@@ -47,22 +47,28 @@ module.exports = (sequelize, DataTypes) => {
     },
     createdAt: {
       allowNull: false,
-      type: Sequelize.BIGINT(20),
+      type: DataTypes.BIGINT(20),
       default: new Date().getTime()
     },
     updatedAt: {
       allowNull: false,
-      type: Sequelize.BIGINT(20),
+      type: DataTypes.BIGINT(20),
       default: new Date().getTime()
     }
   }, {});
   organization_master.associate = function(models) {
     // associations can be defined here
-    user_master.hasMany(models.organization_master, {
-      foreignKey : 'user_id', sourceCode: 'created_by'
-    })
+    // organization_master.hasMany(models.user_master, {
+    //   foreignKey : 'user_id', sourceCode: 'created_by'
+    // })
 
-    organization_master.belongsTo(models.organization_department, {foreignKey: 'organization_id', sourceCode: 'organization_id'})
+    organization_master.belongsToMany(models.department_master, {
+      through: 'organization_deparments',
+      as: 'department_masters',
+      foreignKey: 'organization_id',
+      otherKey: 'department_id'
+    })
+   // organization_master.belongsTo(models.organization_department, {foreignKey: 'organization_id', sourceCode: 'organization_id'})
   };
   return organization_master;
 };

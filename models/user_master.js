@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER(11),
       references: {
         model: 'user_type_masters',
-        key: user_type_id
+        key: 'user_type_id'
       }
     },
     user_salutation: {
@@ -43,24 +43,24 @@ module.exports = (sequelize, DataTypes) => {
     is_verified: {
       type: DataTypes.TINYINT(4),
       allowNull: false,
-      default: 0
+      defaultValue: 0
     },
 
     is_active: {
       type: DataTypes.TINYINT(4),
       allowNull: false,
-      default: 1
+      defaultValue: 1 
     },
 
     createdAt: {
       allowNull: false,
       type: DataTypes.BIGINT(20),
-      default: new Date().getTime()
+      defaultValue: new Date().getTime()
     },
     updatedAt: {
       allowNull: false,
       type: DataTypes.BIGINT(20),
-      default: new Date().getTime()
+      defaultValue: new Date().getTime()
     }
   }, {});
   user_master.associate = function(models) {

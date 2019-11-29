@@ -9,6 +9,8 @@ let rateLimit = require('express-rate-limit')
 //const customerRouter = require('./api/router/customer.router')
 const companyRouter = require('./api/router/company.router')
 const categoryRouter = require('./api/router/Category.router')
+const userRouter = require('./api/router/User.router')
+const orgRouter = require('./api/router/organization.router')
 // const db = require('./api/db.config')
 
 // db.sequelize.sync({force: false}).then(() => {
@@ -72,7 +74,8 @@ app.use(logger(loggerFormat, {
 //app.use('/api/customer', customerRouter)
 app.use('/api/company', companyRouter)
 app.use('/api/category', categoryRouter)
-
+app.use('/api/user', userRouter)
+app.use('/api/organization',orgRouter)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

@@ -36,8 +36,10 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   organization_department.associate = function(models) {
     // associations can be defined here
-    organization_department.belongsTo(models.organization_master, {foreignKey: 'organization_id', sourceCode: 'organization_id'})
-    organization_department.belongsTo(models.department_master, {foreignKey: 'dept_id', sourceCode: 'dept_id'})
+    // organization_department.belongsTo(models.organization_master, {foreignKey: 'organization_id', sourceCode: 'organization_id'})
+    // organization_department.belongsTo(models.department_master, {foreignKey: 'dept_id', sourceCode: 'dept_id'})
+
+    
   };
   return organization_department;
 };
