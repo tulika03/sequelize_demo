@@ -12,6 +12,9 @@ const sequelize = new Sequelize(config.database, config.username, config.passwor
       min: config.pool.min,
       acquire: config.pool.acquire,
       idle: config.pool.idle
+    },
+    dialectOptions: {
+      multipleStatements: true
     }
   });
   

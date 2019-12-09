@@ -151,4 +151,27 @@ router.get('/category_code1/:category_code', (req, res,next) => {
     })
 })
 
+router.post('/create_proc', (req,res) => {
+    let sql = `
+        CREATE PROCEDURE GetCategories()
+        BEGIN
+            SELECT category_id,category_name from categories;
+        END`
+    db.sequelize.query(sql, {type: sequelize.QueryTypes.RAW}).spread((results, metadata) => {
+        console.log("insertion data", results)
+        console.log("insertion data", metadata)
+        res.status(201).json({
+            message: 'Category data inserted successfully...'
+            //data: data
+        })
+    })
+    .catch((error) => {
+        console.log("error", error)
+        res.status(500).json({
+            message: 'Data could not be inserted.',
+            err: error
+        })
+    })
+})
+
 module.exports = router
